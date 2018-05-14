@@ -1,0 +1,1032 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Steven -->
+<window>
+  <!--<onload>RunScript(script.foobar)</onload>
+  <onunload>SetProperty(foo,bar)</onunload>-->
+  <defaultcontrol>111</defaultcontrol>
+  <visible>Window.IsActive(Home)</visible>
+  <zorder>1</zorder>
+  
+  <coordinates>
+    <system>1</system>
+    <posx>0</posx>
+    <posy>0</posy>
+  </coordinates>
+  
+  <controls>
+    <control>
+	<!-- Background image and video file with an overlay -->
+    </control>
+	<control type="group">
+      
+      <control type="videowindow">
+        <description>My first video control</description>
+        <width>1280</width>
+        <height>720</height>
+        <visible>Player.HasVideo</visible>
+      </control>
+	   <!--Background image and video file with an overlay-->
+      <control type="image">
+        <width>1280</width>
+        <height>720</height>
+        <texture>Panel4.png</texture>
+        <visible>true</visible>
+      </control> 
+    </control>
+	
+	<control type="group">
+      <posx>0</posx>
+      <posy>0</posy>
+      <control type="image">
+		<posx>0</posx>
+        <posy>-50</posy>
+        <width>1280</width>
+        <height>100</height>
+        <texture>MediaInfoBackUpper.png</texture>
+        <visible>true</visible>
+      </control>
+	  </control>
+	 <control type="group">
+	  <animation effect="fade" start="0" time="400" delay="900" >WindowOpen</animation>
+	  <animation effect="fade" end="0" time="300" delay="900" >WindowClose</animation>
+	<control type="label" id="200">
+        <posx>250</posx>
+        <posy>-5</posy>
+        <width>700</width>
+        <font>font35_title</font>
+        <align>center</align>
+        <textcolor>FFEEEEFF</textcolor>
+        <label></label>
+      </control>
+	  <!--KONFIGBUTTON-->  
+		  <control type="button" id="201">
+			<posx>10</posx>
+            <posy>0</posy>
+            <width>300</width>
+            <height>40</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+			<!-- Schriftart noch unsicher! ICON (ID 202) muss auch noch geändert werden!-->
+            <font>font30</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>center</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <onclick>-</onclick>
+            <label>Konfiguration</label>
+          </control>
+	</control>
+	
+	<control type="group">
+        <posx>340</posx>
+        <posy>50</posy>
+        <control type="group">
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <control type="button" id="111">
+			<posx>0</posx>
+            <posy>0</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>30</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <onclick>-</onclick>
+            <label>Inspektion I</label>
+          </control>
+		  
+		  
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		  <control type="image" id="133">
+            <posx>-30</posx>
+            <posy>7</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="144">
+            <posx>-30</posx>
+            <posy>5</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="145">
+            <posx>-30</posx>
+            <posy>5</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="100" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="900" tween="sine">WindowClose</animation>
+          <control type="button" id="112">
+			<posx>0</posx>
+            <posy>60</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>60</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Inspektion II</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <control type="image" id="134">
+            <posx>0</posx>
+            <posy>67</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="146">
+            <posx>0</posx>
+            <posy>65</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="147">
+            <posx>0</posx>
+            <posy>65</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="200" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="800" tween="sine">WindowClose</animation>
+          <control type="button" id="113">
+			<posx>0</posx>
+            <posy>120</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>80</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Ölservice</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <control type="image" id="135">
+            <posx>20</posx>
+            <posy>127</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+		  </control>
+		  <control type="image" id="148">
+            <posx>20</posx>
+            <posy>125</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+		  </control>
+		  <control type="image" id="149">
+            <posx>20</posx>
+            <posy>125</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+		  </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="300" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="700" tween="sine">WindowClose</animation>
+          <control type="button" id="114">
+			<posx>0</posx>
+            <posy>180</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>100</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Zündkerzen</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <control type="image" id="136">
+            <posx>40</posx>
+            <posy>187</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="150">
+            <posx>40</posx>
+            <posy>185</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="151">
+            <posx>40</posx>
+            <posy>185</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="400" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="600" tween="sine">WindowClose</animation>
+          <control type="button" id="115">
+			<posx>0</posx>
+            <posy>240</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>110</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Microfilter</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <control type="image" id="137">
+            <posx>50</posx>
+            <posy>247</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="152">
+            <posx>50</posx>
+            <posy>245</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="153">
+            <posx>50</posx>
+            <posy>245</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="500" tween="back">WindowOpen</animation>
+		  <animation effect="slide" start="0,0" end="1500,0" time="200" delay="500" tween="sine">WindowClose</animation>
+          <control type="button" id="116">
+			<posx>0</posx>
+            <posy>300</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>110</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Luftfilter</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <control type="image" id="138">
+            <posx>50</posx>
+            <posy>307</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="154">
+            <posx>50</posx>
+            <posy>305</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="155">
+            <posx>50</posx>
+            <posy>305</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="600" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="400" tween="sine">WindowClose</animation>
+          <control type="button" id="117">
+			<posx>0</posx>
+            <posy>360</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>100</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Bremsbeläge vorne</label>
+          </control>
+		  <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		  <control type="image" id="139">
+            <posx>40</posx>
+            <posy>367</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="156">
+            <posx>40</posx>
+            <posy>365</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="157">
+            <posx>40</posx>
+            <posy>365</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+        </control>
+		
+        <control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="700" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="300" tween="sine">WindowClose</animation>
+          <control type="button" id="118">
+			<posx>0</posx>
+            <posy>420</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>80</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Bremsbeläge hinten</label>
+          </control>
+        <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		<control type="image" id="140">
+            <posx>20</posx>
+            <posy>427</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="158">
+            <posx>20</posx>
+            <posy>425</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="159">
+            <posx>20</posx>
+            <posy>425</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+		</control>
+		
+		<control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="800" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="200" tween="sine">WindowClose</animation>
+          <control type="button" id="119">
+			<posx>0</posx>
+            <posy>480</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>60</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Bremsflüssigkeit</label>
+          </control>
+        <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		<control type="image" id="141">
+            <posx>0</posx>
+            <posy>487</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="160">
+            <posx>0</posx>
+            <posy>485</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="161">
+            <posx>0</posx>
+            <posy>485</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+		</control>
+		
+		<control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="900" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="100" tween="sine">WindowClose</animation>
+          <control type="button" id="120">
+			<posx>0</posx>
+            <posy>540</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>30</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>§ Hauptuntersuchung</label>
+          </control>
+        <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		<control type="image" id="142">
+            <posx>-30</posx>
+            <posy>547</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="162">
+            <posx>-30</posx>
+            <posy>545</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="163">
+            <posx>-30</posx>
+            <posy>545</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+		</control>
+		
+		<control type="group">
+          <animation effect="slide" start="-1500,0" end="0,0" time="200" delay="1000" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="0" tween="sine">WindowClose</animation>
+          <control type="button" id="121">
+			<posx>0</posx>
+            <posy>600</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Abgasuntersuchung</label>
+          </control>
+        <control type="group">
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+		<control type="image" id="143">
+            <posx>-60</posx>
+            <posy>607</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>ok.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="164">
+            <posx>-60</posx>
+            <posy>605</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>gelb.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="165">
+            <posx>-60</posx>
+            <posy>605</posy>
+            <width>40</width>
+            <height>40</height>
+            <texture>rot.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+		</control>
+		
+      </control>
+	  
+	  <!-- DARTS  -->
+		  <control type="group">
+		  <animation effect="fade" start= "0" time="500" delay="2500">WindowOpen</animation>
+		  <animation effect="fade" end="0" time="200" delay="0">WindowClose</animation>
+		 <!-- mittige darts  -->
+		 <control type="image" id="180">
+			<posx>300</posx>
+			<posy>266</posy>
+				<width>950</width> <!-- 551  -->
+				<height>25</height>
+            <texture>dart.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="181">
+			<posx>300</posx>
+			<posy>326</posy>
+				<width>950</width>
+				<height>25</height>
+            <texture>dart.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="182">
+			<posx>300</posx>
+			<posy>386</posy>
+				<width>950</width>
+				<height>25</height>
+            <texture>dart.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="183">
+			<posx>300</posx>
+			<posy>446</posy>
+				<width>950</width>
+				<height>25</height>
+            <texture>dart.png</texture>
+            <visible>true</visible>
+          </control>
+		  <!-- die ersten 3 darts  -->
+		  <control type="image" id="184">
+			<posx>30</posx>
+			<posy>93</posy>
+				<width>550</width>
+				<height>300</height>
+            <texture>dart2.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="185">
+			<posx>80</posx>
+			<posy>155</posy>
+				<width>500</width>
+				<height>200</height>
+            <texture>dart2.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="186">
+			<posx>27</posx>
+			<posy>215</posy>
+				<width>650</width>
+				<height>200</height>
+            <texture>dart2.png</texture>
+            <visible>true</visible>
+          </control>
+		  <!-- die letzten 4 darts  -->
+		  <control type="image" id="187">
+			<posx>30</posx>
+			<posy>324</posy>
+				<width>650</width>
+				<height>200</height>
+            <texture>dart3.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="188">
+			<posx>30</posx>
+			<posy>284</posy>
+				<width>600</width>
+				<height>300</height>
+            <texture>dart3.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="189">
+			<posx>30</posx>
+			<posy>294</posy>
+				<width>550</width>
+				<height>350</height>
+            <texture>dart3.png</texture>
+            <visible>true</visible>
+          </control>
+		  <control type="image" id="190">
+			<posx>50</posx>
+			<posy>306</posy>
+				<width>450</width>
+				<height>400</height>
+            <texture>dart3.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <!-- Frame  -->
+	  <control type="group">
+          <animation effect="fade" start= "0" time="500" delay="2100">WindowOpen</animation>
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+	  <control type="image" id="178">
+	  <posx>95</posx>
+        <posy>255</posy>
+            <width>210</width>
+            <height>209</height>
+            <texture>frame.png</texture>
+            <visible>true</visible>
+          </control>
+		  </control>
+	  
+	  <!-- ICONS + Overlay  -->
+	  <control type="group">
+        <posx>100</posx>
+        <posy>260</posy>
+        <control type="group">
+          <animation effect="fade" start= "0" time="500" delay="2100">WindowOpen</animation>
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+	  <control type="image" id="100">
+            <width>200</width>
+            <height>200</height>
+            <texture>inspektion.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          <!--KonfigurationsIcon -->
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="202">
+            <width>200</width>
+            <height>200</height>
+            <texture>au.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          <animation effect="fade" end= "0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="101">
+            <width>200</width>
+            <height>200</height>
+            <texture>inspektion2.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="102">
+            <width>200</width>
+            <height>200</height>
+            <texture>oil.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="103">
+            <width>200</width>
+            <height>200</height>
+            <texture>zk.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+         
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="104">
+            <width>200</width>
+            <height>200</height>
+            <texture>microfilter.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="105">
+            <width>200</width>
+            <height>200</height>
+            <texture>filter.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="106">
+            <width>200</width>
+            <height>200</height>
+            <texture>bremsenva.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="107">
+            <width>200</width>
+            <height>200</height>
+            <texture>bremsenha.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="108">
+            <width>200</width>
+            <height>200</height>
+            <texture>bremsfluessigkeit.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="109">
+            <width>200</width>
+            <height>200</height>
+            <texture>hu.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+		 <control type="group">
+          
+          <animation effect="fade" end="0" time="200" delay="1200">WindowClose</animation>
+		<control type="image" id="110">
+            <width>200</width>
+            <height>200</height>
+            <texture>au.png</texture>
+            <visible>true</visible>
+          </control>
+		 </control>
+		 
+	  </control>
+	  
+		  
+	  <!-- Intervall Labels  -->
+	  
+	  <control type="group">
+        <posx>0</posx>
+        <posy>50</posy>
+        <control type="label" id="122">
+		  <posx>1250</posx>
+          <posy>0</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="123">
+		  <posx>1250</posx>
+          <posy>60</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1100">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="800">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="124">
+		  <posx>1250</posx>
+          <posy>120</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1200">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="700">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="125">
+		  <posx>1250</posx>
+          <posy>180</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1300">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="600">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="126">
+		  <posx>1250</posx>
+          <posy>240</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1400">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="500">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="127">
+		  <posx>1250</posx>
+          <posy>300</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1500">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="400">WindowClose</animation>
+        </control>
+		
+		
+		<control type="label" id="128">
+		  <posx>1250</posx>
+          <posy>360</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1600">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="300">WindowClose</animation>
+        </control>
+		
+		
+		<control type="label" id="129">
+		  <posx>1250</posx>
+          <posy>420</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1700">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="200">WindowClose</animation>
+        </control>
+		
+		
+		<control type="label" id="130">
+		  <posx>1250</posx>
+          <posy>480</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1800">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="100">WindowClose</animation>
+        </control>
+		
+		
+		<control type="label" id="131">
+		  <posx>1250</posx>
+          <posy>540</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="1900">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="50">WindowClose</animation>
+        </control>
+		
+		<control type="label" id="132">
+		  <posx>1250</posx>
+          <posy>600</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label></label>
+          <animation effect="fade" start= "0" time="200" delay="2000">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="0">WindowClose</animation>
+        </control>
+		</control>
+		<!--
+	  </control>-->
+  </controls>
+</window>

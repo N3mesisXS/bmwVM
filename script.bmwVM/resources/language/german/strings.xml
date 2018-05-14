@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- 
+	Settings for this  add-on/plugin/script/service???
+	Reference: http://kodi.wiki/view/Add-on_settings 
+-->
+<strings>
+<!--Intervalle-->
+<string id="30001">Intervalle</string>
+<!--Kraftstoffwahl und Getriebewahl-->
+<string id="30002">Kraftstoff</string>
+<string id="30003">Getriebeart</string>
+<!--Anpassbare Intervalle-->
+<string id="30004">Inspektion I</string>
+<string id="30005">Inspektion II</string>
+<string id="30006">Oelservice</string>
+<string id="30007">Zuendkerzen / Dieselpartikelfilter</string>
+<!--Zuendkerzen oder Dieselpartikelfilter-->
+<string id="30009">Microfilter</string>
+<string id="30010">Luftfilter / Automatikgetriebeservice</string>
+<!--Getriebe oder Luftfilter-->
+<string id="30012">Bremsen Vorderachse</string>
+<string id="30013">Bremsen Hinterachse</string>
+
+<!--Korrekturfaktor-->
+<string id="30014">Korrekturfaktor</string>
+<string id="30015">Inspektion I</string>
+<string id="30016">Inspektion II</string>
+<string id="30017">Oelservice</string>
+<string id="30018">Zuendkerzen / Dieselpartikelfilter</string>
+<!--Zuendkerzen oder Dieselpartikelfilter-->
+<string id="30020">Microfilter</string>
+<string id="30021">Luftfilter / Automatikgetriebeservice</string>
+<!--Getriebe oder Luftfilter-->
+<string id="30023">Bremsen Vorderachse</string>
+<string id="30024">Bremsen Hinterachse</string>
+<!--Zeitpunkte-->
+<string id="30025">Bremsfluessigkeit (Jahr)</string>
+<string id="30026">Bremsfluessigkeit (Monat)</string>
+<string id="30027">Hauptuntersuchung (Jahr)</string>
+<string id="30028">Hauptuntersuchung (Monat)</string>
+<string id="30029">Abgasuntersuchung (Jahr)</string>
+<string id="30030">Abgasuntersuchung (Monat)</string>
+<string id="30031">Korrekturfaktoren</string>
+<string id="30032">Kraftstoff und Getriebewahl</string>
+<string id="30033">Intervalle</string>
+</strings>

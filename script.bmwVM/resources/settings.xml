@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- 
+	Settings for this  add-on/plugin/script/service???
+	Reference: http://kodi.wiki/view/Add-on_settings 
+-->
+<settings>
+	<category label="30001">
+		<description>Intervalle</description>
+		<!--Intervalle-->
+		<setting type="sep" />
+		<setting label="30032" type="lsep" />
+		<setting type="sep" />
+		<setting id="Kraftstoff" type="enum" label="30002" values="Benzin|Kerosin|Diesel" default="0"/>
+		<setting id="Getriebeart" type="enum" label="30003" values="Schaltgetriebe|Automatikgetriebe" default="0"/>
+		<setting type="sep" />
+		<setting label="30033" type="lsep" />
+		<setting type="sep" />
+		<setting id="Inspektion_1" type="number" label="30004" default="25000" />
+		<setting id="Inspektion_2" type="number" label="30005" default="50000" />
+		<setting id="Oilservice" type="number" label="30006" default="25000" />
+		<setting id="Zuendkerzen" type="number" label="30007" default="80000" />
+		<!--Zuendkerzen oder Dieselpartikelfilter-->
+		<setting id="Microfilter" type="number" label="30009" default="25000" />
+		<setting id="Luftfilter" type="number" label="30010" default="25000" />
+		<!--Getriebe oder Luftfilter-->
+		<setting id="Bremsen_VA" type="number" label="30012" default="30000" />
+		<setting id="Bremsen_HA" type="number" label="30013" default="30000" />
+		<setting type="sep" />
+	</category>
+	<category label="30014">
+		<description>Korrektur</description>
+		<!--Korrektur-->
+		<setting type="sep" />
+		<setting label="30031" type="lsep" />
+		<setting type="sep" />
+		<setting id="insp_I" type="number" label="30015" default="136000" />
+		<setting id="insp_II" type="number" label="30016" default="136000" />
+		<setting id="oil" type="number" label="30017" default="136000" />
+		<setting id="kerzen" type="number" label="30018" default="136000" />
+		<setting id="micro_filter" type="number" label="30020" default="136000" />
+		<setting id="luft_filter" type="number" label="30021" default="136000" />
+		<setting id="br_VA" type="number" label="30023" default="136000" />
+		<setting id="br_HA" type="number" label="30024" default="136000" />
+		<!--Zeitpunkte-->
+		<setting type="sep" />
+		<setting id="Bremsfluessigkeit_Jahr" type="number" label="30025" default="2017" />
+		<setting id="Bremsfluessigkeit_Monat" type="enum" label="30026" values="1|2|3|4|5|6|7|8|9|10|11|12" default="7"/>
+		<setting type="sep" />
+		<setting id="Hauptuntersuchung_Jahr" type="number" label="30027" default="2017" />
+		<setting id="Hauptuntersuchung_Monat" type="enum" label="30028" values="1|2|3|4|5|6|7|8|9|10|11|12" default="7"/>
+		<setting type="sep" />
+		<setting id="Abgasuntersuchung_Jahr" type="number" label="30029" default="2017" />
+		<setting id="Abgasuntersuchung_Monat" type="enum" label="30030" values="1|2|3|4|5|6|7|8|9|10|11|12" default="7"/>
+		<setting type="sep" />
+		
+	</category>
+</settings>
