@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- Steven  29.4.2018-->
+<!-- Steven M. Schacht, 14.5.2018 -->
 <window>
   <!--<onload>RunScript(script.foobar)</onload>
   <onunload>SetProperty(foo,bar)</onunload>-->
@@ -14,9 +14,11 @@
   </coordinates>
   
   <controls>
+  
     <control>
 	<!-- Background image and video file with an overlay -->
     </control>
+	
 	<control type="group">
       <control type="image">
         <description>bg image</description>
@@ -25,13 +27,14 @@
         <texture>background.jpg</texture>
         <visible>!Player.HasVideo</visible>
       </control>
+	  
       <control type="videowindow">
         <description>My first video control</description>
         <width>1280</width>
         <height>720</height>
         <visible>Player.HasVideo</visible>
       </control>
-	   <!--Background image and video file with an overlay-->
+	  
       <control type="image">
         <width>1280</width>
         <height>720</height>
@@ -86,7 +89,7 @@
             <label>Konfiguration</label>
           </control>
 		  
-		  <control type="button" id="201">
+		  <control type="button" id="202">
 			<posx>980</posx>
             <posy>0</posy>
             <width>300</width>
@@ -102,8 +105,7 @@
             <pulseonselect>true</pulseonselect>
             <onclick>-</onclick>
             <label>Hinzufügen</label>
-          </control>
-		  
+          </control>  
 	</control>
 	
 	<!-- Legende -->
@@ -112,7 +114,7 @@
         <posx>30</posx>
         <posy>50</posy>
 		
-		<control type="label" id="111">
+		<control type="label" id="203">
 			<posx>15</posx>
             <posy>0</posy>
             <width>950</width>
@@ -123,7 +125,7 @@
             <label>Datum</label>
           </control>
 		
-		 <control type="label" id="111">
+		 <control type="label" id="204">
 			<posx>185</posx>
             <posy>0</posy>
             <width>950</width>
@@ -134,7 +136,7 @@
             <label>Tachostand</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="205">
 			<posx>425</posx>
             <posy>0</posy>
             <width>950</width>
@@ -145,7 +147,7 @@
             <label>Verbrauch</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="206">
 			<posx>635</posx>
             <posy>0</posy>
             <width>950</width>
@@ -156,7 +158,7 @@
             <label>Distanz</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="207">
 			<posx>830</posx>
             <posy>0</posy>
             <width>950</width>
@@ -167,7 +169,7 @@
             <label>Menge</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="208">
 			<posx>1015</posx>
             <posy>0</posy>
             <width>950</width>
@@ -178,7 +180,7 @@
             <label>Kosten</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="209">
 			<posx>1155</posx>
             <posy>0</posy>
             <width>950</width>
@@ -212,11 +214,12 @@
             <disabledcolor>FFEEEEFF</disabledcolor>
             <align>left</align>
             <textoffsetx>0</textoffsetx>
+			<onclick>-</onclick>
             <pulseonselect>true</pulseonselect>
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="211">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -227,7 +230,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="212">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -238,7 +241,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="213">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -249,7 +252,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="214">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -260,7 +263,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="215">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -271,7 +274,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="216">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -292,7 +295,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="217">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -308,7 +311,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="218">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -319,7 +322,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="219">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -330,7 +333,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="220">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -341,7 +344,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="221">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -352,7 +355,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="222">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -363,7 +366,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="223">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -384,7 +387,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="224">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -400,7 +403,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="225">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -411,7 +414,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="226">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -422,7 +425,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="227">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -433,7 +436,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="228">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -444,7 +447,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="229">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -455,7 +458,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="230">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -476,7 +479,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="231">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -492,7 +495,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="232">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -503,7 +506,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="233">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -514,7 +517,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="234">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -525,7 +528,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="235">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -536,7 +539,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="236">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -547,7 +550,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="237">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -568,7 +571,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="238">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -584,7 +587,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="239">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -595,7 +598,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="240">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -606,7 +609,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="241">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -617,7 +620,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="242">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -628,7 +631,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="243">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -639,7 +642,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="244">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -660,7 +663,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="245">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -676,7 +679,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="246">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -687,7 +690,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="247">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -698,7 +701,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="248">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -709,7 +712,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="249">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -720,7 +723,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="250">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -731,7 +734,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="251">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -752,7 +755,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="252">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -768,7 +771,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="253">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -779,7 +782,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="254">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -790,7 +793,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="255">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -801,7 +804,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="256">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -812,7 +815,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="257">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -823,7 +826,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="258">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -844,7 +847,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="259">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -860,7 +863,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="260">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -871,7 +874,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="261">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -882,7 +885,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="262">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -893,7 +896,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="263">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -904,7 +907,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="264">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -915,7 +918,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="265">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -936,7 +939,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="266">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -952,7 +955,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="267">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -963,7 +966,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="268">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -974,7 +977,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="269">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -985,7 +988,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="270">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -996,7 +999,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="271">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1007,7 +1010,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="272">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1028,7 +1031,7 @@
           <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
           <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
           
-		  <control type="button" id="111">
+		  <control type="button" id="273">
 			<posx>0</posx>
             <posy>0</posy>
             <width>1260</width>
@@ -1044,7 +1047,7 @@
             <label>14/08/92</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="274">
 			<posx>190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1055,7 +1058,7 @@
             <label>136000 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="275">
 			<posx>410</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1066,7 +1069,7 @@
             <label>8.6 L/100km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="276">
 			<posx>645</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1077,7 +1080,7 @@
             <label>650 km</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="277">
 			<posx>800</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1088,7 +1091,7 @@
             <label>55.6 L / 63 L</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="278">
 			<posx>1025</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1099,7 +1102,7 @@
             <label>74.89 €</label>
           </control>
 		  
-		  <control type="label" id="111">
+		  <control type="label" id="279">
 			<posx>1190</posx>
             <posy>2</posy>
             <width>950</width>
@@ -1112,7 +1115,6 @@
 		  
 		</control>
     </control>
-	
 </controls>
   
   

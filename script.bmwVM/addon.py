@@ -88,6 +88,11 @@ def checkFileandRead():
 		with open(VM_DB_FILE, 'w') as neueDatei:
 			neueDatei.close()
 	
+		#Ist keine Datei vorhanden so soll direkt die Dialogbox erscheinen für den ersten Eintrag
+		#dialog = VMDialog("skin.xml", ADDON_PATH, 'Default', '720p')
+		#dialog.doModal()
+		#del dialog
+	
 	#Datenbank auslesen
 	with open(VM_DB_FILE, 'r') as DB_FILE_LESEN:
 		inhaltSpeichern = DB_FILE_LESEN.read()
@@ -95,7 +100,7 @@ def checkFileandRead():
 	DB_FILE_LESEN.close()
 	
 	ItemList = filter(lambda a: a!='', inhaltSpeichern.split('\n'))
-	
+	global Items
 	Items = [{
 		"Datum":x.split(deliminator)[0],
 		"Tacho":x.split(deliminator)[1],
@@ -106,7 +111,9 @@ def checkFileandRead():
 		"Sorte":x.split(deliminator)[6],
 		}for x in ItemList]
 		#GEHT!
-	xbmcgui.Dialog().ok(ADDON_NAME, str(Items[0].get('Datum')))
+	xbmcgui.Dialog().ok(ADDON_NAME, str(Items[0].get('Tacho')))
+	
+	#VM_DB_FILE EXPORTFUNKTION zum HOME verzeichnis
 	
 	#inhaltSchreiben = open(VM_DB_FILE, 'w')
 	#inhaltSchreiben.write(str(Items))
@@ -119,43 +126,82 @@ def main():
 	checkFileandRead()
 	
 	
+	#Es werden erstmal nur die letzten 10 Einträge angezeigt, später soll man durch alle scrollen können
 	
+	#-> welcher Button zuerst den Fokus hat ist von den IDs abhängig
 	
 class FensterXML(xbmcgui.WindowXML):
 	
 	def onInit(self):
 		
 		
-		self.Konfig = self.getControl(201)
-		self.Konfig.setLabel("Konfiguration")
+		#self.Konfig = self.getControl(201)
+		
 		
 		#Buttons Navigation, label links/mittig
 		self.BtnKonfig		= self.getControl(201)
-		self.BtnInspektion1 = self.getControl(111)
-		self.BtnInspektion2 = self.getControl(112)
-		self.BtnOil 		= self.getControl(113)
-		self.BtnZK 			= self.getControl(114)
-		self.BtnMF 			= self.getControl(115)
-		self.BtnLF	 		= self.getControl(116)		
-		self.BtnBV 			= self.getControl(117)
-		self.BtnBH 			= self.getControl(118)
-		self.BtnBF 			= self.getControl(119)
-		self.BtnHU 			= self.getControl(120)
-		self.BtnAU 			= self.getControl(121)
+		self.BtnKonfig.setLabel("Konfiguration")
+		self.BtnHinzufuegen	= self.getControl(202)
+		self.BtnHinzufuegen.setLabel("Hinzufügen")
+		
+		self.BtnLine_1 	= self.getControl(111)
+		self.BtnLine_2 	= self.getControl(217)
+		self.BtnLine_3 	= self.getControl(224)
+		self.BtnLine_4	= self.getControl(231)
+		self.BtnLine_5 	= self.getControl(238)
+		self.BtnLine_6	= self.getControl(245)		
+		self.BtnLine_7 	= self.getControl(252)
+		self.BtnLine_8 	= self.getControl(259)
+		self.BtnLine_9 	= self.getControl(266)
+		self.BtnLine_10	= self.getControl(273)
+		
 		
 		#Navigation
-		self.BtnKonfig.setNavigation(self.BtnInspektion1,self.BtnInspektion1,self.BtnInspektion1,self.BtnInspektion1)
-		self.BtnInspektion1.setNavigation(self.BtnAU,self.BtnInspektion2,self.BtnKonfig,self.BtnInspektion1)
-		self.BtnInspektion2.setNavigation(self.BtnInspektion1,self.BtnOil,self.BtnKonfig,self.BtnInspektion2)
-		self.BtnOil.setNavigation(self.BtnInspektion2,self.BtnZK,self.BtnKonfig,self.BtnOil)
-		self.BtnZK.setNavigation(self.BtnOil,self.BtnMF,self.BtnKonfig,self.BtnZK)
-		self.BtnMF.setNavigation(self.BtnZK,self.BtnLF,self.BtnKonfig,self.BtnMF)
-		self.BtnLF.setNavigation(self.BtnMF,self.BtnBV,self.BtnKonfig,self.BtnLF)
-		self.BtnBV.setNavigation(self.BtnLF,self.BtnBH,self.BtnKonfig,self.BtnBV)
-		self.BtnBH.setNavigation(self.BtnBV,self.BtnBF,self.BtnKonfig,self.BtnBH)
-		self.BtnBF.setNavigation(self.BtnBH,self.BtnHU,self.BtnKonfig,self.BtnBF)
-		self.BtnHU.setNavigation(self.BtnBF,self.BtnAU,self.BtnKonfig,self.BtnHU)
-		self.BtnAU.setNavigation(self.BtnHU,self.BtnInspektion1,self.BtnKonfig,self.BtnAU)
+		self.BtnKonfig.setNavigation(self.BtnLine_1,self.BtnLine_1,self.BtnLine_1,self.BtnHinzufuegen)
+		self.BtnHinzufuegen.setNavigation(self.BtnLine_1,self.BtnLine_1,self.BtnKonfig,self.BtnLine_1)
+		self.BtnLine_1.setNavigation(self.BtnLine_10,self.BtnLine_2,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_2.setNavigation(self.BtnLine_1,self.BtnLine_3,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_3.setNavigation(self.BtnLine_2,self.BtnLine_4,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_4.setNavigation(self.BtnLine_3,self.BtnLine_5,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_5.setNavigation(self.BtnLine_4,self.BtnLine_6,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_6.setNavigation(self.BtnLine_5,self.BtnLine_7,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_7.setNavigation(self.BtnLine_6,self.BtnLine_8,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_8.setNavigation(self.BtnLine_7,self.BtnLine_9,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_9.setNavigation(self.BtnLine_8,self.BtnLine_10,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnLine_10.setNavigation(self.BtnLine_9,self.BtnLine_1,self.BtnKonfig,self.BtnHinzufuegen)
+		
+		#Alle Label befüllen
+		self.Line_1_Tacho 		= self.getControl(211)
+		self.Line_1_Verbrauch 	= self.getControl(212)
+		self.Line_1_Distanz		= self.getControl(213)
+		self.Line_1_Menge		= self.getControl(214)
+		self.Line_1_Kosten		= self.getControl(215)
+		self.Line_1_Sorte 		= self.getControl(216)
+		
+		self.Line_2_Tacho		= self.getControl(218)
+		self.Line_2_Verbrauch	= self.getControl(219)
+		self.Line_2_Distanz		= self.getControl(220)
+		self.Line_2_Menge		= self.getControl(221)
+		self.Line_2_Kosten 		= self.getControl(222)
+		self.Line_2_Sorte		= self.getControl(223)	
+		
+		
+		self.BtnLine_1.setLabel(str(Items[0].get('Datum')))
+		self.Line_1_Tacho.setLabel(str(Items[0].get('Tacho') + " km"))
+		self.Line_1_Verbrauch.setLabel(str(Items[0].get('Verbrauch')+ " L/km"))
+		self.Line_1_Distanz.setLabel(str(Items[0].get('Distanz')+ " km"))
+		self.Line_1_Menge.setLabel(str(Items[0].get('Menge')+ " L / 63 L"))
+		self.Line_1_Kosten.setLabel(str(Items[0].get('Kosten')+ " €"))
+		self.Line_1_Sorte.setLabel(str(Items[0].get('Sorte')))
+		
+		self.BtnLine_2.setLabel(str(Items[1].get('Datum')))
+		self.Line_2_Tacho.setLabel(str(Items[1].get('Tacho')+ " km"))
+		self.Line_2_Verbrauch.setLabel(str(Items[1].get('Verbrauch')+ " L/km"))
+		self.Line_2_Distanz.setLabel(str(Items[1].get('Distanz')+ " km"))
+		self.Line_2_Menge.setLabel(str(Items[1].get('Menge')+ " L / 63 L"))
+		self.Line_2_Kosten.setLabel(str(Items[1].get('Kosten')+ " €"))
+		self.Line_2_Sorte.setLabel(str(Items[1].get('Sorte')))
+		
 		
 		
 	def onClick(self, controlID):
@@ -177,6 +223,12 @@ class FensterXML(xbmcgui.WindowXML):
 				self.InspektionIGruen.setVisible(True) #Gruenes icon anzeigen und Rot und Gelb unsichtbar machen
 			
 				xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%("Service",lineZurueck, time, iconInsp))
+				
+	#def onFocus(self, controlID):
+	#	if (controlID == 111):
+	#		self.BtnLine_1.setVisible(True) 
+	#	else:
+	#		self.BtnLine_1.setVisible(False)
 			
 	
 class VMDialog(xbmcgui.WindowXMLDialog):			
