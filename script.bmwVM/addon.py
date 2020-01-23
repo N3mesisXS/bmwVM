@@ -28,9 +28,9 @@ ADDON_USERPATH 	= os.path.join(xbmc.translatePath('special://userdata'), 'addon_
 
 #Variablen
 JahrMonat		= datetime.now() #Uhrzeit, Jahr und Monat, Tag fehlt
-VM_DB_FILE		=	os.path.join(ADDON_USERPATH, 'VM_Database.log')
+VM_DB_FILE		= os.path.join(ADDON_USERPATH, 'VM_Database.log')
 deliminator 	= ' '
-
+TankVolumen		= ADDON_SETTINGS.getSetting("Tankvol")
 #Notifikationen, standard texte fuer Dialogbfenster
 lineyesno = "Möchten Sie diesen Wert wirklich zurückstellen?"
 
@@ -39,6 +39,29 @@ lineyesno = "Möchten Sie diesen Wert wirklich zurückstellen?"
 
 
 #------------------Funktionen------------------#
+
+#Nur Zahlen Eingeben
+def numerischeEingabe(title):
+	dialog = xbmcgui.Dialog()
+	d = dialog.numeric(0, title)
+	#Variable darf keinesfalls Leer übergeben werden, daher wird das Fenster wieder aufgerufen
+	while d=="":
+		d = dialog.numeric(0, title)
+	return d
+		
+#Vollwertige Tastatur
+def TastaturEingabe(title):
+	ts = xbmc.Keyboard('default', 'heading')
+	ts.setDefault("")
+	ts.setHeading(title)
+	ts.setHiddenInput(False)
+	ts.doModal()
+	
+	if(ts.isConfirmed()):
+		ausgabe_wert = ts.getText()
+		return(ausgabe_wert)
+	else:
+		return(title)
 
 #Kilometerstand aus dem Kombi abfragen mit TCP, wird in der Funktion "get_odometer()" aufgerufen
 def send_tcp_command(message):
@@ -72,7 +95,8 @@ def get_odometer():
         odometer = -1
 
     if odometer < 0:
-        xbmc.executebuiltin('Notification(ERROR:, TCP returns: %s, %d)' % (odometer, time)) #ok
+        xbmc.executebuiltin('Notification(ERROR:, TCP returns: %s)' % (odometer)) #ok
+		
         return 0 # Um zu verhindern das er Quatsch in die variable schreibt, dummywert
     else:
         return odometer #ok	
@@ -109,9 +133,10 @@ def checkFileandRead():
 		"Menge":x.split(deliminator)[4],
 		"Kosten":x.split(deliminator)[5],
 		"Sorte":x.split(deliminator)[6],
+		"Betankung":x.split(deliminator)[7],
 		}for x in ItemList]
 		#GEHT!
-	xbmcgui.Dialog().ok(ADDON_NAME, str(Items[0].get('Tacho')))
+	#xbmcgui.Dialog().ok(ADDON_NAME, str(Items[0].get('Tacho')))
 	
 	#VM_DB_FILE EXPORTFUNKTION zum HOME verzeichnis
 	
@@ -119,12 +144,106 @@ def checkFileandRead():
 	#inhaltSchreiben.write(str(Items))
 	#inhaltSchreiben.write("\n")
 	#inhaltSchreiben.close()
+
+def WriteNewFile(Menge, Kosten, Sorte, Betankung):
+	#VM_DB_FILE EXPORTFUNKTION zum HOME verzeichnis
+	ListParameter = list()
+	
+	ListParameter.append("Datum")
+	ListParameter.append("Tacho")
+	ListParameter.append("Verbrauch")
+	ListParameter.append("Distanz")
+	ListParameter.append("Menge")
+	ListParameter.append("Kosten")
+	ListParameter.append("Sorte")
+	ListParameter.append("Betankung")
+		
+	#Distance = Items[0].get("Tacho")) - get_odometer()
+	
+	try:
+		Items[0].get(ListParameter[1])
+		
+		Distance = int(get_odometer()) - int(Items[0].get(ListParameter[1]))
+		
+		if(Distance == 0):
+			Distance = numerischeEingabe("Erstbetankung Distanz:") # Erste Distanz haendisch eintragen bei "Neuwagen"
+			
+			while(Distance == "0"):
+				Distance = numerischeEingabe("Erstbetankung Distanz:") # Erste Distanz haendisch eintragen bei "Neuwagen"
+	except:
+		Distance = numerischeEingabe("Erstbetankung Distanz:") #Distanz haendisch nachtragen wenn erste Betankung
+		
+		while(Distance == "0"):
+				Distance = numerischeEingabe("Erstbetankung Distanz:") # Erste Distanz haendisch eintragen bei "Neuwagen"
+	
+	Verbrauch = 0
+	allKilo = 0
+	allMenge = 0.0
+	cpyDist = Distance
+	cpyMenge = Menge
+	Counter = 0
+	
+	if (Betankung == 0):
+	
+		if (int(Items[0].get(ListParameter[7])) == 1):
+			for Item in Items:
+				if(int(Items[Counter].get(ListParameter[7])) == 1):
+					allKilo = allKilo + int(Items[Counter].get(ListParameter[3]))
+					allMenge = allMenge + float(Items[Counter].get(ListParameter[4]))
+				Counter = Counter + 1
+				
+				if(int(Items[Counter].get(ListParameter[7])) == 0):
+					break
+				
+			cpyDist = int(cpyDist) + int(allKilo)
+			cpyMenge = float(cpyMenge) + float(allMenge)
+	
+		Verbrauch 	= (float(cpyMenge) * 100) / int(cpyDist)
+		
+		
+				
+		
+	
+	d = datetime.today()
+	
+	inhaltSchreiben = open(VM_DB_FILE, 'w')
+	
+	inhaltSchreiben.write(str(d.strftime('%d.%m.%y'))) #str(d.day) + "." + str(d.month) + "." + str(d.year)) #Datum
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(get_odometer())) #get_odometer()
+	inhaltSchreiben.write(" ")
+	if (Betankung == 0):
+		inhaltSchreiben.write(str(round(Verbrauch, 2)))
+	if (Betankung == 1):
+		inhaltSchreiben.write("-")
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(Distance))
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(Menge))
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(Kosten))
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(Sorte))
+	inhaltSchreiben.write(" ")
+	inhaltSchreiben.write(str(Betankung))
+	inhaltSchreiben.write("\n")
+	
+	Count 	= 0
+	Count2 	= 0
+	
+	for Item in Items:
+		for Count2 in range(8):
+			inhaltSchreiben.write(str(Items[Count].get(ListParameter[Count2])))
+			inhaltSchreiben.write(" ")
+		inhaltSchreiben.write("\n")
+		Count = Count + 1
+		
+	inhaltSchreiben.close()
 	
 #----------------------MAIN---------------------#
 
 def main(): 
 	checkFileandRead()
-	
 	
 	#Es werden erstmal nur die letzten 10 Einträge angezeigt, später soll man durch alle scrollen können
 	
@@ -133,8 +252,6 @@ def main():
 class FensterXML(xbmcgui.WindowXML):
 	
 	def onInit(self):
-		
-		
 		#self.Konfig = self.getControl(201)
 		
 		
@@ -144,85 +261,578 @@ class FensterXML(xbmcgui.WindowXML):
 		self.BtnHinzufuegen	= self.getControl(202)
 		self.BtnHinzufuegen.setLabel("Hinzufügen")
 		
-		self.BtnLine_1 	= self.getControl(111)
-		self.BtnLine_2 	= self.getControl(217)
-		self.BtnLine_3 	= self.getControl(224)
-		self.BtnLine_4	= self.getControl(231)
-		self.BtnLine_5 	= self.getControl(238)
-		self.BtnLine_6	= self.getControl(245)		
-		self.BtnLine_7 	= self.getControl(252)
-		self.BtnLine_8 	= self.getControl(259)
-		self.BtnLine_9 	= self.getControl(266)
-		self.BtnLine_10	= self.getControl(273)
+		self.Gr1	= self.getControl(666)
+		self.Gr2	= self.getControl(667)
+		self.Gr3	= self.getControl(668)
+		self.Gr4	= self.getControl(669)
+		self.Gr5	= self.getControl(670)
+		self.Gr6	= self.getControl(671)
+		self.Gr7	= self.getControl(672)
+		self.Gr8	= self.getControl(673)
+		self.Gr9	= self.getControl(674)
+		self.Gr10	= self.getControl(675)
+		
+		self.DictionaryListParameter = list()
+		self.DictionaryListParameter.append("Datum")
+		self.DictionaryListParameter.append("Tacho")
+		self.DictionaryListParameter.append("Verbrauch")
+		self.DictionaryListParameter.append("Distanz")
+		self.DictionaryListParameter.append("Menge")
+		self.DictionaryListParameter.append("Kosten")
+		self.DictionaryListParameter.append("Sorte")
+		
+		self.DictionaryListEndPara = list()
+		self.DictionaryListEndPara.append(" km")
+		self.DictionaryListEndPara.append(" L / 100 km")
+		self.DictionaryListEndPara.append(" L / " + str(TankVolumen) + " L")
+		self.DictionaryListEndPara.append(" €")
+		
+		#Umbau auf einer Liste
+		self.Line_1 	= list()
+		self.Line_2 	= list()
+		self.Line_3 	= list()
+		self.Line_4 	= list()
+		self.Line_5 	= list()
+		self.Line_6 	= list()
+		self.Line_7 	= list()
+		self.Line_8 	= list()
+		self.Line_9 	= list()
+		self.Line_10 	= list()
+		
+		self.Line_1.append(self.getControl(111)) # Erster Button
+		
+		iLineNr = 211
+		
+		while (iLineNr < 217):
+			self.Line_1.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 224):
+			self.Line_2.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 231):
+			self.Line_3.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 238):
+			self.Line_4.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 245):
+			self.Line_5.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 252):
+			self.Line_6.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 259):
+			self.Line_7.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 266):
+			self.Line_8.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		while (iLineNr < 273):
+			self.Line_9.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+			
+		while (iLineNr < 280):
+			self.Line_10.append(self.getControl(iLineNr))
+			iLineNr = iLineNr + 1
+		
+		LineNullOrDone 	= True
+		ItemCount 		= 0
+		LineAParaCount 	= 0
+		
+		while (LineNullOrDone == True):
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr1.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr2.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr3.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr4.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr5.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr6.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr7.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr8.setVisible(False)
+				#LineNullOrDone = False
+			
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr9.setVisible(False)
+				#LineNullOrDone = False
+			
+			ItemCount = ItemCount + 1
+			
+			try:
+				Items[ItemCount]
+				
+				for LineAParaCount in range(7):
+					if(LineAParaCount == 1 or LineAParaCount == 3):
+						self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+					if(LineAParaCount == 2):
+						self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+					if(LineAParaCount == 4):
+						self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+					if(LineAParaCount == 5):
+						self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+					if(LineAParaCount == 0 or LineAParaCount == 6):
+						self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+			except:
+				self.Gr10.setVisible(False)
+				#LineNullOrDone = False
+			
+			LineNullOrDone = False
 		
 		
 		#Navigation
-		self.BtnKonfig.setNavigation(self.BtnLine_1,self.BtnLine_1,self.BtnLine_1,self.BtnHinzufuegen)
-		self.BtnHinzufuegen.setNavigation(self.BtnLine_1,self.BtnLine_1,self.BtnKonfig,self.BtnLine_1)
-		self.BtnLine_1.setNavigation(self.BtnLine_10,self.BtnLine_2,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_2.setNavigation(self.BtnLine_1,self.BtnLine_3,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_3.setNavigation(self.BtnLine_2,self.BtnLine_4,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_4.setNavigation(self.BtnLine_3,self.BtnLine_5,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_5.setNavigation(self.BtnLine_4,self.BtnLine_6,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_6.setNavigation(self.BtnLine_5,self.BtnLine_7,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_7.setNavigation(self.BtnLine_6,self.BtnLine_8,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_8.setNavigation(self.BtnLine_7,self.BtnLine_9,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_9.setNavigation(self.BtnLine_8,self.BtnLine_10,self.BtnKonfig,self.BtnHinzufuegen)
-		self.BtnLine_10.setNavigation(self.BtnLine_9,self.BtnLine_1,self.BtnKonfig,self.BtnHinzufuegen)
+		self.BtnKonfig.setNavigation(self.Line_1[0],self.Line_1[0],self.Line_1[0],self.BtnHinzufuegen)
+		self.BtnHinzufuegen.setNavigation(self.Line_1[0],self.Line_1[0],self.BtnKonfig,self.Line_1[0])
+		self.Line_1[0].setNavigation(self.Line_10[0],self.Line_2[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_2[0].setNavigation(self.Line_1[0],self.Line_3[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_3[0].setNavigation(self.Line_2[0],self.Line_4[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_4[0].setNavigation(self.Line_3[0],self.Line_5[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_5[0].setNavigation(self.Line_4[0],self.Line_6[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_6[0].setNavigation(self.Line_5[0],self.Line_7[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_7[0].setNavigation(self.Line_6[0],self.Line_8[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_8[0].setNavigation(self.Line_7[0],self.Line_9[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_9[0].setNavigation(self.Line_8[0],self.Line_10[0],self.BtnKonfig,self.BtnHinzufuegen)
+		self.Line_10[0].setNavigation(self.Line_9[0],self.Line_1[0],self.BtnKonfig,self.BtnHinzufuegen)
 		
-		#Alle Label befüllen
-		self.Line_1_Tacho 		= self.getControl(211)
-		self.Line_1_Verbrauch 	= self.getControl(212)
-		self.Line_1_Distanz		= self.getControl(213)
-		self.Line_1_Menge		= self.getControl(214)
-		self.Line_1_Kosten		= self.getControl(215)
-		self.Line_1_Sorte 		= self.getControl(216)
-		
-		self.Line_2_Tacho		= self.getControl(218)
-		self.Line_2_Verbrauch	= self.getControl(219)
-		self.Line_2_Distanz		= self.getControl(220)
-		self.Line_2_Menge		= self.getControl(221)
-		self.Line_2_Kosten 		= self.getControl(222)
-		self.Line_2_Sorte		= self.getControl(223)	
-		
-		
-		self.BtnLine_1.setLabel(str(Items[0].get('Datum')))
-		self.Line_1_Tacho.setLabel(str(Items[0].get('Tacho') + " km"))
-		self.Line_1_Verbrauch.setLabel(str(Items[0].get('Verbrauch')+ " L/km"))
-		self.Line_1_Distanz.setLabel(str(Items[0].get('Distanz')+ " km"))
-		self.Line_1_Menge.setLabel(str(Items[0].get('Menge')+ " L / 63 L"))
-		self.Line_1_Kosten.setLabel(str(Items[0].get('Kosten')+ " €"))
-		self.Line_1_Sorte.setLabel(str(Items[0].get('Sorte')))
-		
-		self.BtnLine_2.setLabel(str(Items[1].get('Datum')))
-		self.Line_2_Tacho.setLabel(str(Items[1].get('Tacho')+ " km"))
-		self.Line_2_Verbrauch.setLabel(str(Items[1].get('Verbrauch')+ " L/km"))
-		self.Line_2_Distanz.setLabel(str(Items[1].get('Distanz')+ " km"))
-		self.Line_2_Menge.setLabel(str(Items[1].get('Menge')+ " L / 63 L"))
-		self.Line_2_Kosten.setLabel(str(Items[1].get('Kosten')+ " €"))
-		self.Line_2_Sorte.setLabel(str(Items[1].get('Sorte')))
-		
-		
-		
+			
 	def onClick(self, controlID):
+	
+		def reloadWindowXML(self):
+		
+			checkFileandRead()
+			
+			LineNullOrDone 	= True
+			ItemCount 		= 0
+			LineAParaCount 	= 0
+		
+			while (LineNullOrDone == True):
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_1[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr1.setVisible(True)
+				except:
+					self.Gr1.setVisible(False)
+				#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_2[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+						
+					self.Gr2.setVisible(True)
+				except:
+					self.Gr2.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_3[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr3.setVisible(True)
+				except:
+					self.Gr3.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+				
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_4[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr4.setVisible(True)
+				except:
+					self.Gr4.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_5[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr5.setVisible(True)
+				except:
+					self.Gr5.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_6[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+					self.Gr6.setVisible(True)
+				except:
+					self.Gr6.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_7[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+			
+					self.Gr7.setVisible(True)
+				except:
+					self.Gr7.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_8[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr8.setVisible(True)
+				except:
+					self.Gr8.setVisible(False)
+				#LineNullOrDone = False
+			
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_9[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr9.setVisible(True)
+				except:
+					self.Gr9.setVisible(False)
+					#LineNullOrDone = False
+			
+				ItemCount = ItemCount + 1
+			
+				try:
+					Items[ItemCount]
+				
+					for LineAParaCount in range(7):
+						if(LineAParaCount == 1 or LineAParaCount == 3):
+							self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[0]))
+						if(LineAParaCount == 2):
+							self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[1]))
+						if(LineAParaCount == 4):
+							self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[2]))
+						if(LineAParaCount == 5):
+							self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount]) + self.DictionaryListEndPara[3]))
+						if(LineAParaCount == 0 or LineAParaCount == 6):
+							self.Line_10[LineAParaCount].setLabel(str(Items[ItemCount].get(self.DictionaryListParameter[LineAParaCount])))
+					
+					self.Gr10.setVisible(True)
+				except:
+					self.Gr10.setVisible(False)
+					
+				LineNullOrDone = False
+				
 		if (controlID == 201): #Konfigurations Buttons
-			#ok = xbmcaddon.Addon().openSettings()
-			#self.close()
-			dialog = VMDialog("skin.xml", ADDON_PATH, 'Default', '720p')
+			ok = xbmcaddon.Addon().openSettings()
+			self.close()
+			
+			#dialog = VMDialog("skin.xml", ADDON_PATH, 'Default', '720p')
+			#dialog.doModal()
+			#del dialog
+		
+		if (controlID == 202): #Wert hinzufügen
+			dialog = VMDialog("verbrauchsmonitor_2.xml", ADDON_PATH, 'Default', '720p')
 			dialog.doModal()
 			del dialog
+			reloadWindowXML(self)
+			
 	
 		if (controlID == 111): #BUTTONID #RESETFUNKTION 
-			ok = xbmcgui.Dialog().yesno(addonname, lineyesno)
-			if ok==1:
-				resetPointDSANeuschreiben(0) 	#resetfunktion ausfuehren
-				faelligkeitAusfuehren()			#faelligkeit neu berechnen
-				self.Inspektion1.setLabel(str(aktFaelligkeit[0])+" km") #label setzen
-				self.InspektionIGelb.setVisible(False)
-				self.InspektionIRot.setVisible(False)
-				self.InspektionIGruen.setVisible(True) #Gruenes icon anzeigen und Rot und Gelb unsichtbar machen
+			ok = xbmcgui.Dialog().yesno(ADDON_NAME, lineyesno)
+			#if ok==1:
+				#xbmc.executebuiltin("XBMC.ReloadSkin()")
+				#resetPointDSANeuschreiben(0) 	#resetfunktion ausfuehren
+				#faelligkeitAusfuehren()			#faelligkeit neu berechnen
+				#self.Inspektion1.setLabel(str(aktFaelligkeit[0])+" km") #label setzen
+				#self.InspektionIGelb.setVisible(False)
+				#self.InspektionIRot.setVisible(False)
+				#self.InspektionIGruen.setVisible(True) #Gruenes icon anzeigen und Rot und Gelb unsichtbar machen
 			
-				xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%("Service",lineZurueck, time, iconInsp))
+				#xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%("Service",lineZurueck, time, iconInsp))
 				
 	#def onFocus(self, controlID):
 	#	if (controlID == 111):
@@ -234,16 +844,167 @@ class FensterXML(xbmcgui.WindowXML):
 class VMDialog(xbmcgui.WindowXMLDialog):			
 
 	def onInit(self):
+		
 		self.MAIN = self.getControl(200)
-		self.MAIN.setLabel("Service")
-	
+		self.MAIN.setLabel("Verbrauchsmonitor")
+		
+		self.DescFuellMenge = self.getControl(800)
+		self.DescKosten 	= self.getControl(801)
+		self.DescSorte 		= self.getControl(802)
+		self.DescBetankung 	= self.getControl(803)
+		
+		self.DescKosten.setVisible(False)
+		self.DescSorte.setVisible(False)
+		self.DescBetankung.setVisible(False)
+		
+		#Buttons
+		self.BttnFuellMenge = self.getControl(111)
+		self.BttnKosten 	= self.getControl(112)
+		self.BttnSorte 		= self.getControl(113)
+		self.BttnBetankung	= self.getControl(114)
+		self.BtnHinzufuegen	= self.getControl(202)
+		
+		self.LblFuellMenge 	= self.getControl(122)
+		self.LblKosten 		= self.getControl(123)
+		self.LblSorte		= self.getControl(124)
+		self.LblBetankungen = self.getControl(125)
+		
+		self.LblFuellMenge.setLabel("? L / " + str(TankVolumen) + " L")
+		
+		#Navigation
+		self.BtnHinzufuegen.setNavigation(self.BttnFuellMenge,self.BttnFuellMenge,self.BttnFuellMenge,self.BttnFuellMenge)
+		self.BttnFuellMenge.setNavigation(self.BttnBetankung,self.BttnKosten,self.BtnHinzufuegen,self.BtnHinzufuegen)
+		self.BttnKosten.setNavigation(self.BttnFuellMenge,self.BttnSorte,self.BtnHinzufuegen,self.BtnHinzufuegen)
+		self.BttnSorte.setNavigation(self.BttnKosten,self.BttnBetankung,self.BtnHinzufuegen,self.BtnHinzufuegen)
+		self.BttnBetankung.setNavigation(self.BttnSorte,self.BttnFuellMenge,self.BtnHinzufuegen,self.BtnHinzufuegen)
 	
 	def onClick(self, controlID):
-		#if (controlID == 201): #Konfigurations Buttons
-		ok = xbmcaddon.Addon().openSettings()
-		self.close()
-
+			
+		global EingabeKraftstoffmenge
+		global EingabeKraftstoffkosten
+		global EingabeKraftstoffart
 		
+		global Betankungsart
+		
+		global VorKomma
+		global NachKomma
+			
+		#Krafstoffmenge
+		if (controlID == 111):
+			VorKomma = numerischeEingabe("Krafstoffmenge Vorkommazahl:")
+			NachKomma = numerischeEingabe("Krafstoffmenge Nachkommazahl:")
+		
+			EingabeKraftstoffmenge = str(str(VorKomma) + "." + str(NachKomma))
+			self.LblFuellMenge.setLabel(str(EingabeKraftstoffmenge) + " L / " + str(TankVolumen) + " L")
+			
+		#Gesamtkosten
+		if (controlID == 112):
+			VorKomma = numerischeEingabe("Kraftstoffkosten Vorkommazahl:")
+			NachKomma = numerischeEingabe("Krafstoffkosten Nachkommazahl:")
+		
+			EingabeKraftstoffkosten = str(str(VorKomma) + "." + str(NachKomma))
+			self.LblKosten.setLabel(str(EingabeKraftstoffkosten) + " €")
+			
+		#Kraftstoffart
+		if (controlID == 113):
+			NormalBenzin = "S"
+			Hochoktan = "S+"
+			Diesel = "D"
+			PowerDiesel = "D+"
+			
+			EingabeKraftstoffart = xbmcgui.Dialog().select("Krafstoffart:", [NormalBenzin, Hochoktan, Diesel, PowerDiesel])
+			
+			if (EingabeKraftstoffart == 0):
+				self.LblSorte.setLabel(str(NormalBenzin))
+				EingabeKraftstoffart = str(NormalBenzin)
+			elif (EingabeKraftstoffart == 1):
+				self.LblSorte.setLabel(str(Hochoktan))
+				EingabeKraftstoffart = str(Hochoktan)
+			elif (EingabeKraftstoffart == 2):
+				self.LblSorte.setLabel(str(Diesel))
+				EingabeKraftstoffart = str(Diesel)
+			elif (EingabeKraftstoffart == 3):
+				self.LblSorte.setLabel(str(PowerDiesel))
+				EingabeKraftstoffart = str(PowerDiesel)
+			elif (EingabeKraftstoffart == -1):
+				self.LblSorte.setLabel("-")
+				EingabeKraftstoffart = "-"
+				
+		if (controlID == 114):
+			Voll = "Vollbetankung"
+			Teil = "Teilbetankung"
+			
+			Betankungsart = xbmcgui.Dialog().select("Betankungsart:", [Voll, Teil])
+			
+			if (Betankungsart == 0):
+				self.LblBetankungen.setLabel(str(Voll))
+			elif (Betankungsart == 1):
+				self.LblBetankungen.setLabel(str(Teil))
+			elif (Betankungsart == -1):
+				if(self.LblBetankungen.getLabel() == str(Voll)):
+					Betankungsart = 0
+					self.LblBetankungen.setLabel(str(Voll))
+				if(self.LblBetankungen.getLabel() == str(Teil)):
+					Betankungsart = 1
+					self.LblBetankungen.setLabel(str(Teil))
+				
+			#EingabeKraftstoffart = TastaturEingabe("Krafstoffart:")
+			
+			#while(len(EingabeKraftstoffart) > 2):
+			#	EingabeKraftstoffart = TastaturEingabe("Krafstoffart:")
+					
+			
+		
+		if (controlID == 202): #Konfigurations Buttons
+		
+			if((len(EingabeKraftstoffmenge) != 0)):
+				
+				try:
+					EingabeKraftstoffkosten
+				except:
+					EingabeKraftstoffkosten = "-"
+					
+				try:
+					EingabeKraftstoffart
+				except:
+					EingabeKraftstoffart = "-"
+				try:
+					Betankungsart
+				except:
+					Betankungsart = 0
+					
+				WriteNewFile(EingabeKraftstoffmenge, EingabeKraftstoffkosten, EingabeKraftstoffart, Betankungsart)
+				
+				#Reset
+				EingabeKraftstoffmenge = 0
+				EingabeKraftstoffkosten = "-"
+				EingabeKraftstoffart = "-"
+				Betankungsart = 0
+				
+			self.close()
+		
+	def onFocus(self, controlID):
+		if (controlID == 111):
+			self.DescFuellMenge.setVisible(True) 
+		else:
+			self.DescFuellMenge.setVisible(False)
+			
+		if (controlID == 112):
+			self.DescKosten.setVisible(True) 
+		else:
+			self.DescKosten.setVisible(False)
+			
+		if (controlID == 113):
+			self.DescSorte.setVisible(True) 
+		else:
+			self.DescSorte.setVisible(False)
+			
+		if (controlID == 114):
+			self.DescBetankung.setVisible(True) 
+		else:
+			self.DescBetankung.setVisible(False)
+
+			
 if __name__ == '__main__':
 	main() #ok
 	w = FensterXML("verbrauchsmonitor.xml", ADDON_PATH, 'Default', '720p') #ok
