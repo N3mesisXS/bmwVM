@@ -22,6 +22,8 @@
 	<control type="group">
       <control type="image">
         <description>bg image</description>
+		<posx>0</posx>
+        <posy>0</posy>
         <width>1280</width>
         <height>720</height>
         <texture>background.jpg</texture>
@@ -36,19 +38,23 @@
       </control>
 	  
       <control type="image">
+	  <posx>0</posx>
+      <posy>-5</posy>
         <width>1280</width>
-        <height>720</height>
+        <height>725</height>
         <texture>Panel4.png</texture>
         <visible>true</visible>
       </control> 
     </control>
 	
 	<control type="group">
+	  <animation effect="fade" start="0" time="400" delay="50" >WindowOpen</animation>
+	  <animation effect="fade" end="0" time="300" delay="1400" >WindowClose</animation>
       <posx>0</posx>
       <posy>0</posy>
       <control type="image">
 		<posx>0</posx>
-        <posy>-50</posy>
+        <posy>0</posy>
         <width>1280</width>
         <height>100</height>
         <texture>MediaInfoBackUpper.png</texture>
@@ -59,19 +65,22 @@
 	  <!-- Kopfzeile -->
 	  
 	 <control type="group">
-	  <animation effect="fade" start="0" time="400" delay="900" >WindowOpen</animation>
-	  <animation effect="fade" end="0" time="300" delay="900" >WindowClose</animation>
+	  
 		<control type="label" id="200">
+		<animation effect="fade" start="0" time="400" delay="200" >WindowOpen</animation>
+		<animation effect="fade" end="0" time="300" delay="1300" >WindowClose</animation>
         <posx>300</posx>
         <posy>-5</posy>
         <width>700</width>
         <font>font35_title</font>
         <align>center</align>
-        <textcolor>orangered</textcolor>
+        <textcolor>FFEEEEFF</textcolor>
         <label>Verbrauchsmonitor</label>
 		</control>
 		
 		<control type="button" id="201">
+			<animation effect="fade" start="0" time="400" delay="2600" >WindowOpen</animation>
+			<animation effect="fade" end="0" time="300" delay="1300" >WindowClose</animation>
 			<posx>10</posx>
             <posy>0</posy>
             <width>300</width>
@@ -90,6 +99,8 @@
           </control>
 		  
 		  <control type="button" id="202">
+			<animation effect="fade" start="0" time="400" delay="2600" >WindowOpen</animation>
+			<animation effect="fade" end="0" time="300" delay="1300" >WindowClose</animation>
 			<posx>980</posx>
             <posy>0</posy>
             <width>300</width>
@@ -111,6 +122,8 @@
 	<!-- Legende -->
 	
 	<control type="group">
+		<animation effect="fade" start="0" time="400" delay="400" >WindowOpen</animation>
+		<animation effect="fade" end="0" time="300" delay="1200" >WindowClose</animation>
         <posx>30</posx>
         <posy>50</posy>
 		
@@ -126,7 +139,7 @@
           </control>
 		
 		 <control type="label" id="204">
-			<posx>185</posx>
+			<posx>155</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
@@ -137,7 +150,7 @@
           </control>
 		  
 		  <control type="label" id="205">
-			<posx>425</posx>
+			<posx>390</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
@@ -170,7 +183,7 @@
           </control>
 		  
 		  <control type="label" id="208">
-			<posx>1015</posx>
+			<posx>1035</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
@@ -181,7 +194,7 @@
           </control>
 		  
 		  <control type="label" id="209">
-			<posx>1155</posx>
+			<posx>1165</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
@@ -195,12 +208,12 @@
 	
 	<!-- Liste -->
 
-	<control type="group">
+	<control type="group" id="666">
         <posx>15</posx>
         <posy>100</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="600" >WindowOpen</animation>
+		  <animation effect="fade" end="0" time="300" delay="1000" >WindowClose</animation>
           
 		  <control type="button" id="111">
 			<posx>0</posx>
@@ -216,11 +229,11 @@
             <textoffsetx>0</textoffsetx>
 			<onclick>-</onclick>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="211">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -231,14 +244,14 @@
           </control>
 		  
 		  <control type="label" id="212">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="213">
@@ -264,7 +277,7 @@
           </control>
 		  
 		  <control type="label" id="215">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -288,12 +301,12 @@
         </control>
      </control>
 	  
-	 <control type="group">
+	 <control type="group" id="667">
         <posx>15</posx>
         <posy>160</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+			<animation effect="fade" start="0" time="400" delay="800" >WindowOpen</animation>
+			<animation effect="fade" end="0" time="300" delay="900" >WindowClose</animation>
           
 		  <control type="button" id="217">
 			<posx>0</posx>
@@ -308,11 +321,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="218">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -323,14 +336,14 @@
           </control>
 		  
 		  <control type="label" id="219">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="220">
@@ -356,7 +369,7 @@
           </control>
 		  
 		  <control type="label" id="222">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -380,13 +393,13 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="668">
         <posx>15</posx>
         <posy>220</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
-          
+          <animation effect="fade" start="0" time="400" delay="1000" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="800" >WindowClose</animation>
+		  
 		  <control type="button" id="224">
 			<posx>0</posx>
             <posy>0</posy>
@@ -400,11 +413,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="225">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -415,14 +428,14 @@
           </control>
 		  
 		  <control type="label" id="226">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="227">
@@ -448,7 +461,7 @@
           </control>
 		  
 		  <control type="label" id="229">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -472,12 +485,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="669">
         <posx>15</posx>
         <posy>280</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="1200" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="700" >WindowClose</animation>
           
 		  <control type="button" id="231">
 			<posx>0</posx>
@@ -492,11 +505,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="232">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -507,14 +520,14 @@
           </control>
 		  
 		  <control type="label" id="233">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="234">
@@ -540,7 +553,7 @@
           </control>
 		  
 		  <control type="label" id="236">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -564,12 +577,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="670">
         <posx>15</posx>
         <posy>340</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="1400" >WindowOpen</animation>
+		  <animation effect="fade" end="0" time="300" delay="600" >WindowClose</animation>
           
 		  <control type="button" id="238">
 			<posx>0</posx>
@@ -584,11 +597,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="239">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -599,14 +612,14 @@
           </control>
 		  
 		  <control type="label" id="240">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="241">
@@ -632,7 +645,7 @@
           </control>
 		  
 		  <control type="label" id="243">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -656,12 +669,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="671">
         <posx>15</posx>
         <posy>400</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="1600" >WindowOpen</animation>
+		  <animation effect="fade" end="0" time="300" delay="500" >WindowClose</animation>
           
 		  <control type="button" id="245">
 			<posx>0</posx>
@@ -676,11 +689,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="246">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -691,14 +704,14 @@
           </control>
 		  
 		  <control type="label" id="247">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="248">
@@ -724,7 +737,7 @@
           </control>
 		  
 		  <control type="label" id="250">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -748,12 +761,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="672">
         <posx>15</posx>
         <posy>460</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="1800" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="400" >WindowClose</animation>
           
 		  <control type="button" id="252">
 			<posx>0</posx>
@@ -768,11 +781,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="253">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -783,14 +796,14 @@
           </control>
 		  
 		  <control type="label" id="254">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="255">
@@ -816,7 +829,7 @@
           </control>
 		  
 		  <control type="label" id="257">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -840,12 +853,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="673">
         <posx>15</posx>
         <posy>520</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="2000" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="300" >WindowClose</animation>
           
 		  <control type="button" id="259">
 			<posx>0</posx>
@@ -860,11 +873,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="260">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -875,14 +888,14 @@
           </control>
 		  
 		  <control type="label" id="261">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="262">
@@ -908,7 +921,7 @@
           </control>
 		  
 		  <control type="label" id="264">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -932,12 +945,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="674">
         <posx>15</posx>
         <posy>580</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="2200" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="200" >WindowClose</animation>
           
 		  <control type="button" id="266">
 			<posx>0</posx>
@@ -952,11 +965,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="267">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -967,14 +980,14 @@
           </control>
 		  
 		  <control type="label" id="268">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="269">
@@ -1000,7 +1013,7 @@
           </control>
 		  
 		  <control type="label" id="271">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -1024,12 +1037,12 @@
 		</control>
     </control>
 	
-	<control type="group">
+	<control type="group" id="675">
         <posx>15</posx>
         <posy>640</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="fade" start="0" time="400" delay="2400" >WindowOpen</animation>
+	      <animation effect="fade" end="0" time="300" delay="100" >WindowClose</animation>
           
 		  <control type="button" id="273">
 			<posx>0</posx>
@@ -1044,11 +1057,11 @@
             <align>left</align>
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>14/08/92</label>
+            <label>14.08.92</label>
           </control>
 		  
 		  <control type="label" id="274">
-			<posx>190</posx>
+			<posx>160</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
@@ -1059,14 +1072,14 @@
           </control>
 		  
 		  <control type="label" id="275">
-			<posx>410</posx>
+			<posx>360</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>green</textcolor>
             <align>left</align>
-            <label>8.6 L/100km</label>
+            <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="276">
@@ -1092,7 +1105,7 @@
           </control>
 		  
 		  <control type="label" id="278">
-			<posx>1025</posx>
+			<posx>1035</posx>
             <posy>2</posy>
             <width>950</width>
             <height>50</height>

@@ -33,8 +33,10 @@
       </control>
 	   <!--Background image and video file with an overlay-->
       <control type="image">
+		<posx>0</posx>
+        <posy>-5</posy>
         <width>1280</width>
-        <height>720</height>
+        <height>725</height>
         <texture>Panel4.png</texture>
         <visible>true</visible>
       </control> 
@@ -44,6 +46,8 @@
       <posx>0</posx>
       <posy>0</posy>
       <control type="image">
+		<animation effect="slide" start="0,50" end="0,0" time="400" delay="100" tween="sine">WindowOpen</animation>
+        <animation effect="slide" start="0,0" end="0,50" time="400" delay="1000" tween="sine">WindowClose</animation>
 		<posx>0</posx>
         <posy>-50</posy>
         <width>1280</width>
@@ -53,10 +57,8 @@
       </control>
 	  </control>
 	 <control type="group">
-	  <animation effect="fade" start="0" time="400" delay="900" >WindowOpen</animation>
-	  <animation effect="fade" end="0" time="300" delay="900" >WindowClose</animation>
 	<control type="label" id="200">
-        <posx>250</posx>
+        <posx>300</posx>
         <posy>-5</posy>
         <width>700</width>
         <font>font35_title</font>
@@ -64,8 +66,9 @@
         <textcolor>FFEEEEFF</textcolor>
         <label>Verbrauchsmonitor</label>
       </control>
-	  <control type="button" id="201">
-			<posx>10</posx>
+	  <control type="button" id="202">
+			<animation effect="fade" start="0" time="400" delay="2600" >WindowOpen</animation>
+			<posx>980</posx>
             <posy>0</posy>
             <width>300</width>
             <height>40</height>
@@ -79,16 +82,16 @@
             <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
             <onclick>-</onclick>
-            <label>Konfiguration</label>
-          </control>
+            <label>Hinzufügen</label>
+			</control>
 	</control>
 	
 	<control type="group">
-        <posx>340</posx>
+        <posx>180</posx>
         <posy>50</posy>
         <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="0" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="1000" tween="sine">WindowClose</animation>
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="1000" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="100" tween="sine">WindowClose</animation>
           <control type="button" id="111">
 			<posx>0</posx>
             <posy>0</posy>
@@ -100,47 +103,17 @@
             <textcolor>FFEEEEFF</textcolor>
             <disabledcolor>FFEEEEFF</disabledcolor>
             <align>left</align>
-            <textoffsetx>30</textoffsetx>
+            <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
             <onclick>-</onclick>
-            <label>Inspektion I</label>
+            <label>Kraftstoffmenge:</label>
           </control>
-		  
-		  
-		  <control type="group">
-          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
-		  <control type="image" id="133">
-            <posx>-30</posx>
-            <posy>7</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>ok.png</texture>
-            <visible>true</visible>
-          </control>
-		  <control type="image" id="144">
-            <posx>-30</posx>
-            <posy>5</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>gelb.png</texture>
-            <visible>true</visible>
-          </control>
-		  <control type="image" id="145">
-            <posx>-30</posx>
-            <posy>5</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>rot.png</texture>
-            <visible>true</visible>
-          </control>
-		  </control>
         </control>
       
 	  
 	  <control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="100" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="900" tween="sine">WindowClose</animation>
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="1200" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="200" tween="sine">WindowClose</animation>
           <control type="button" id="112">
 			<posx>0</posx>
             <posy>60</posy>
@@ -152,42 +125,15 @@
             <textcolor>FFEEEEFF</textcolor>
             <disabledcolor>FFEEEEFF</disabledcolor>
             <align>left</align>
-            <textoffsetx>60</textoffsetx>
+            <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>Inspektion II</label>
+            <label>Gesamtkosten:</label>
           </control>
-		  <control type="group">
-          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
-          <control type="image" id="134">
-            <posx>0</posx>
-            <posy>67</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>ok.png</texture>
-            <visible>true</visible>
-          </control>
-		  <control type="image" id="146">
-            <posx>0</posx>
-            <posy>65</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>gelb.png</texture>
-            <visible>true</visible>
-          </control>
-		  <control type="image" id="147">
-            <posx>0</posx>
-            <posy>65</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>rot.png</texture>
-            <visible>true</visible>
-          </control>
-		  </control>
         </control>
+		
 		<control type="group">
-          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="200" tween="back">WindowOpen</animation>
-          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="800" tween="sine">WindowClose</animation>
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="1300" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="300" tween="sine">WindowClose</animation>
           <control type="button" id="113">
 			<posx>0</posx>
             <posy>120</posy>
@@ -199,46 +145,38 @@
             <textcolor>FFEEEEFF</textcolor>
             <disabledcolor>FFEEEEFF</disabledcolor>
             <align>left</align>
-            <textoffsetx>80</textoffsetx>
+            <textoffsetx>0</textoffsetx>
             <pulseonselect>true</pulseonselect>
-            <label>Ölservice</label>
+            <label>Kraftstoffart:</label>
           </control>
-		  <control type="group">
-          <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
-          <control type="image" id="135">
-            <posx>20</posx>
-            <posy>127</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>ok.png</texture>
-            <visible>true</visible>
-		  </control>
-		  <control type="image" id="148">
-            <posx>20</posx>
-            <posy>125</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>gelb.png</texture>
-            <visible>true</visible>
-		  </control>
-		  <control type="image" id="149">
-            <posx>20</posx>
-            <posy>125</posy>
-            <width>40</width>
-            <height>40</height>
-            <texture>rot.png</texture>
-            <visible>true</visible>
-		  </control>
-		  </control>
         </control>
-		</control>
+		
+		<control type="group">
+          <animation effect="slide" start="-2000,0" end="0,0" time="200" delay="1400" tween="back">WindowOpen</animation>
+          <animation effect="slide" start="0,0" end="1500,0" time="200" delay="400" tween="sine">WindowClose</animation>
+          <control type="button" id="114">
+			<posx>0</posx>
+            <posy>180</posy>
+            <width>950</width>
+            <height>50</height>
+            <texturefocus>MenuItemFO.png</texturefocus>
+            <texturenofocus>MenuItemNF.png</texturenofocus>
+            <font>font35_title</font>
+            <textcolor>FFEEEEFF</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+            <label>Betankungsart:</label>
+          </control>
+        </control>
+	 </control>
 		
 	  <control type="group">
-        <posx>0</posx>
+        <posx>1100</posx>
         <posy>50</posy>
         <control type="label" id="122">
-		  <posx>1250</posx>
+		  <posx>0</posx>
           <posy>0</posy>
           <width>400</width>
           <height>50</height>
@@ -246,12 +184,12 @@
           <align>right</align>
           <textcolor>FFEEEEFF</textcolor>
           <disabledcolor>FFEEEEFF</disabledcolor>
-          <label>Intervall</label>
+          <label>? L / ? L</label>
           <animation effect="fade" start= "0" time="200" delay="1000">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="900">WindowClose</animation>
+          <animation effect="fade" end="0" time="100" delay="100">WindowClose</animation>
         </control>
 		<control type="label" id="123">
-		  <posx>1250</posx>
+		  <posx>0</posx>
           <posy>60</posy>
           <width>400</width>
           <height>50</height>
@@ -259,12 +197,12 @@
           <align>right</align>
           <textcolor>FFEEEEFF</textcolor>
           <disabledcolor>FFEEEEFF</disabledcolor>
-          <label>Intervall</label>
+          <label>? €</label>
           <animation effect="fade" start= "0" time="200" delay="1100">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="800">WindowClose</animation>
+          <animation effect="fade" end="0" time="100" delay="200">WindowClose</animation>
         </control>
 		<control type="label" id="124">
-		  <posx>1250</posx>
+		  <posx>0</posx>
           <posy>120</posy>
           <width>400</width>
           <height>50</height>
@@ -272,12 +210,91 @@
           <align>right</align>
           <textcolor>FFEEEEFF</textcolor>
           <disabledcolor>FFEEEEFF</disabledcolor>
-          <label>Intervall</label>
+          <label> -</label>
           <animation effect="fade" start= "0" time="200" delay="1200">WindowOpen</animation>
-          <animation effect="fade" end="0" time="100" delay="700">WindowClose</animation>
+          <animation effect="fade" end="0" time="100" delay="300">WindowClose</animation>
+        </control>
+		<control type="label" id="125">
+		  <posx>0</posx>
+          <posy>180</posy>
+          <width>400</width>
+          <height>50</height>
+          <font>font35_title</font>
+          <align>right</align>
+          <textcolor>FFEEEEFF</textcolor>
+          <disabledcolor>FFEEEEFF</disabledcolor>
+          <label>Vollbetankung</label>
+          <animation effect="fade" start= "0" time="200" delay="1300">WindowOpen</animation>
+          <animation effect="fade" end="0" time="100" delay="400">WindowClose</animation>
         </control>
 		</control>
-		<!--
-	  </control>-->
+		
+		
+	
+	
+		<control type="label" id="800">
+			<animation effect="fade" start= "10" time="200" delay="1000">WindowOpen</animation>
+			<animation effect="fade" end="0" time="200" delay="300">WindowClose</animation>
+			<posx>440</posx>
+            <posy>680</posy>
+            <width>950</width>
+            <height>50</height>
+            <font>font35</font>
+            <textcolor>orangered</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+			<visible>true</visible>
+            <label>Die Kraftstoffmenge die Sie getankt haben.</label>
+          </control>
+		  <control type="label" id="801">
+			<animation effect="fade" start= "10" time="200" delay="1000">WindowOpen</animation>
+			<animation effect="fade" end="0" time="200" delay="300">WindowClose</animation>
+			<posx>440</posx>
+            <posy>680</posy>
+            <width>950</width>
+            <height>50</height>
+            <font>font35</font>
+            <textcolor>orangered</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+			<visible>true</visible>
+            <label>Die Kosten für die gesamte Füllmenge.</label>
+          </control>
+		  <control type="label" id="802">
+			<animation effect="fade" start= "10" time="200" delay="1000">WindowOpen</animation>
+			<animation effect="fade" end="0" time="200" delay="300">WindowClose</animation>
+			<posx>440</posx>
+            <posy>680</posy>
+            <width>950</width>
+            <height>50</height>
+            <font>font35</font>
+            <textcolor>orangered</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+			<visible>true</visible>
+            <label>Die Krafstoffart die Sie aufgefüllt haben.</label>
+          </control>
+		  <control type="label" id="803">
+			<animation effect="fade" start= "10" time="200" delay="1000">WindowOpen</animation>
+			<animation effect="fade" end="0" time="200" delay="300">WindowClose</animation>
+			<posx>440</posx>
+            <posy>680</posy>
+            <width>950</width>
+            <height>50</height>
+            <font>font35</font>
+            <textcolor>orangered</textcolor>
+            <disabledcolor>FFEEEEFF</disabledcolor>
+            <align>left</align>
+            <textoffsetx>0</textoffsetx>
+            <pulseonselect>true</pulseonselect>
+			<visible>true</visible>
+            <label>Die Art der Betankung die Sie durchgeführt haben.</label>
+          </control>
   </controls>
 </window>
