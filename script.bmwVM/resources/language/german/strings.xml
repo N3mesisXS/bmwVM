@@ -5,12 +5,12 @@
 -->
 <strings>
 <!--Intervalle-->
-<string id="30001">Intervalle</string>
+<string id="30001">Einstellungen</string>
 <!--Kraftstoffwahl und Getriebewahl-->
 <string id="30002">Kraftstoff</string>
 <string id="30003">Getriebeart</string>
 <!--Anpassbare Intervalle-->
-<string id="30004">Inspektion I</string>
+<string id="30004">Tankvolumen</string>
 <string id="30005">Inspektion II</string>
 <string id="30006">Oelservice</string>
 <string id="30007">Zuendkerzen / Dieselpartikelfilter</string>
@@ -41,6 +41,6 @@
 <string id="30029">Abgasuntersuchung (Jahr)</string>
 <string id="30030">Abgasuntersuchung (Monat)</string>
 <string id="30031">Korrekturfaktoren</string>
-<string id="30032">Kraftstoff und Getriebewahl</string>
+<string id="30032">Einstellungen Fahrzeug</string>
 <string id="30033">Intervalle</string>
 </strings>
