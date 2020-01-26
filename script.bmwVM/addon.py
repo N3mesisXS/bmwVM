@@ -184,22 +184,24 @@ def WriteNewFile(Menge, Kosten, Sorte, Betankung):
 	Counter = 0
 	
 	if (Betankung == 0):
-	
-		if (int(Items[0].get(ListParameter[7])) == 1):
-			for Item in Items:
-				if(int(Items[Counter].get(ListParameter[7])) == 1):
-					allKilo = allKilo + int(Items[Counter].get(ListParameter[3]))
-					allMenge = allMenge + float(Items[Counter].get(ListParameter[4]))
-				Counter = Counter + 1
+		try:
+			if (int(Items[0].get(ListParameter[7])) == 1):
+				for Item in Items:
+					if (int(Items[Counter].get(ListParameter[7])) == 1):
+						allKilo = allKilo + int(Items[Counter].get(ListParameter[3]))
+						allMenge = allMenge + float(Items[Counter].get(ListParameter[4]))
+					Counter = Counter + 1
 				
-				if(int(Items[Counter].get(ListParameter[7])) == 0):
-					break
+					if(int(Items[Counter].get(ListParameter[7])) == 0):
+						break
 				
 			cpyDist = int(cpyDist) + int(allKilo)
 			cpyMenge = float(cpyMenge) + float(allMenge)
-	
-		Verbrauch 	= (float(cpyMenge) * 100) / int(cpyDist)
-		
+			
+			Verbrauch 	= (float(cpyMenge) * 100) / int(cpyDist)
+		except:
+			Verbrauch 	= (float(Menge) * 100) / int(Distance)
+			
 		
 				
 		
@@ -283,8 +285,8 @@ class FensterXML(xbmcgui.WindowXML):
 		
 		self.DictionaryListEndPara = list()
 		self.DictionaryListEndPara.append(" km")
-		self.DictionaryListEndPara.append(" L / 100 km")
-		self.DictionaryListEndPara.append(" L / " + str(TankVolumen) + " L")
+		self.DictionaryListEndPara.append(" L")
+		self.DictionaryListEndPara.append(" L")
 		self.DictionaryListEndPara.append(" €")
 		
 		#Umbau auf einer Liste
