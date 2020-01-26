@@ -54,7 +54,7 @@
       <posy>0</posy>
       <control type="image">
 		<posx>0</posx>
-        <posy>0</posy>
+        <posy>20</posy>
         <width>1280</width>
         <height>100</height>
         <texture>MediaInfoBackUpper.png</texture>
@@ -101,7 +101,7 @@
 		  <control type="button" id="202">
 			<animation effect="fade" start="0" time="400" delay="2600" >WindowOpen</animation>
 			<animation effect="fade" end="0" time="300" delay="1300" >WindowClose</animation>
-			<posx>980</posx>
+			<posx>950</posx>
             <posy>0</posy>
             <width>300</width>
             <height>40</height>
@@ -124,81 +124,81 @@
 	<control type="group">
 		<animation effect="fade" start="0" time="400" delay="400" >WindowOpen</animation>
 		<animation effect="fade" end="0" time="300" delay="1200" >WindowClose</animation>
-        <posx>30</posx>
-        <posy>50</posy>
+        <posx>0</posx>
+        <posy>60</posy>
 		
 		<control type="label" id="203">
-			<posx>15</posx>
+			<posx>37</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Datum</label>
           </control>
 		
 		 <control type="label" id="204">
-			<posx>155</posx>
+			<posx>200</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Tachostand</label>
           </control>
 		  
 		  <control type="label" id="205">
-			<posx>390</posx>
+			<posx>448</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
-            <label>Verbrauch</label>
+            <label>Konsum</label>
           </control>
 		  
 		  <control type="label" id="206">
-			<posx>635</posx>
+			<posx>632</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Distanz</label>
           </control>
 		  
 		  <control type="label" id="207">
-			<posx>830</posx>
+			<posx>815</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Menge</label>
           </control>
 		  
 		  <control type="label" id="208">
-			<posx>1035</posx>
+			<posx>985</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Kosten</label>
           </control>
 		  
 		  <control type="label" id="209">
-			<posx>1165</posx>
+			<posx>1155</posx>
             <posy>0</posy>
             <width>950</width>
             <height>50</height>
-            <font>font30</font>
+            <font>font35_title</font>
             <textcolor>orangered</textcolor>
             <align>left</align>
             <label>Sorte</label>
@@ -209,8 +209,8 @@
 	<!-- Liste -->
 
 	<control type="group" id="666">
-        <posx>15</posx>
-        <posy>100</posy>
+        <posx>10</posx>
+        <posy>120</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="600" >WindowOpen</animation>
 		  <animation effect="fade" end="0" time="300" delay="1000" >WindowClose</animation>
@@ -233,64 +233,64 @@
           </control>
 		  
 		  <control type="label" id="211">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="212">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
-            <label>8.6 L / 100 km</label>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
+            <label>8.6 L</label>
           </control>
 		  
 		  <control type="label" id="213">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="214">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
-            <label>55.6 L / 63 L</label>
+            <align>right</align>
+            <label>55.6 L</label>
           </control>
 		  
 		  <control type="label" id="215">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="216">
-			<posx>1190</posx>
-            <posy>2</posy>
-            <width>950</width>
+			<posx>1180</posx>
+            <posy>-3</posy>
+            <width>200</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
@@ -302,8 +302,8 @@
      </control>
 	  
 	 <control type="group" id="667">
-        <posx>15</posx>
-        <posy>160</posy>
+        <posx>10</posx>
+        <posy>180</posy>
         <control type="group">
 			<animation effect="fade" start="0" time="400" delay="800" >WindowOpen</animation>
 			<animation effect="fade" end="0" time="300" delay="900" >WindowClose</animation>
@@ -325,63 +325,63 @@
           </control>
 		  
 		  <control type="label" id="218">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="219">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="220">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="221">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="222">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="223">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -394,8 +394,8 @@
     </control>
 	
 	<control type="group" id="668">
-        <posx>15</posx>
-        <posy>220</posy>
+        <posx>10</posx>
+        <posy>240</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="1000" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="800" >WindowClose</animation>
@@ -417,63 +417,63 @@
           </control>
 		  
 		  <control type="label" id="225">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="226">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="227">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="228">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="229">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="230">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -486,8 +486,8 @@
     </control>
 	
 	<control type="group" id="669">
-        <posx>15</posx>
-        <posy>280</posy>
+        <posx>10</posx>
+        <posy>300</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="1200" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="700" >WindowClose</animation>
@@ -509,63 +509,63 @@
           </control>
 		  
 		  <control type="label" id="232">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="233">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="234">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="235">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="236">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="237">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -578,8 +578,8 @@
     </control>
 	
 	<control type="group" id="670">
-        <posx>15</posx>
-        <posy>340</posy>
+        <posx>10</posx>
+        <posy>360</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="1400" >WindowOpen</animation>
 		  <animation effect="fade" end="0" time="300" delay="600" >WindowClose</animation>
@@ -601,63 +601,63 @@
           </control>
 		  
 		  <control type="label" id="239">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="240">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="241">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="242">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="243">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="244">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -670,8 +670,8 @@
     </control>
 	
 	<control type="group" id="671">
-        <posx>15</posx>
-        <posy>400</posy>
+        <posx>10</posx>
+        <posy>420</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="1600" >WindowOpen</animation>
 		  <animation effect="fade" end="0" time="300" delay="500" >WindowClose</animation>
@@ -693,63 +693,63 @@
           </control>
 		  
 		  <control type="label" id="246">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="247">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="248">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="249">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="250">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="251">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -762,8 +762,8 @@
     </control>
 	
 	<control type="group" id="672">
-        <posx>15</posx>
-        <posy>460</posy>
+        <posx>10</posx>
+        <posy>480</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="1800" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="400" >WindowClose</animation>
@@ -785,63 +785,63 @@
           </control>
 		  
 		  <control type="label" id="253">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="254">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="255">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="256">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="257">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="258">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -854,8 +854,8 @@
     </control>
 	
 	<control type="group" id="673">
-        <posx>15</posx>
-        <posy>520</posy>
+        <posx>10</posx>
+        <posy>540</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="2000" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="300" >WindowClose</animation>
@@ -877,63 +877,63 @@
           </control>
 		  
 		  <control type="label" id="260">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="261">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="262">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="263">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="264">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="265">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -946,8 +946,8 @@
     </control>
 	
 	<control type="group" id="674">
-        <posx>15</posx>
-        <posy>580</posy>
+        <posx>10</posx>
+        <posy>600</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="2200" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="200" >WindowClose</animation>
@@ -969,63 +969,63 @@
           </control>
 		  
 		  <control type="label" id="267">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="268">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="269">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="270">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="271">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="272">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
@@ -1038,8 +1038,8 @@
     </control>
 	
 	<control type="group" id="675">
-        <posx>15</posx>
-        <posy>640</posy>
+        <posx>10</posx>
+        <posy>660</posy>
         <control type="group">
           <animation effect="fade" start="0" time="400" delay="2400" >WindowOpen</animation>
 	      <animation effect="fade" end="0" time="300" delay="100" >WindowClose</animation>
@@ -1061,63 +1061,63 @@
           </control>
 		  
 		  <control type="label" id="274">
-			<posx>160</posx>
-            <posy>2</posy>
+			<posx>425</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>136000 km</label>
           </control>
 		  
 		  <control type="label" id="275">
-			<posx>360</posx>
-            <posy>2</posy>
+			<posx>600</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
-            <textcolor>green</textcolor>
-            <align>left</align>
+            <textcolor>orangered</textcolor>
+            <align>right</align>
             <label>8.6 L / 100 km</label>
           </control>
 		  
 		  <control type="label" id="276">
-			<posx>645</posx>
-            <posy>2</posy>
+			<posx>775</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>650 km</label>
           </control>
 		  
 		  <control type="label" id="277">
-			<posx>800</posx>
-            <posy>2</posy>
+			<posx>950</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>55.6 L / 63 L</label>
           </control>
 		  
 		  <control type="label" id="278">
-			<posx>1035</posx>
-            <posy>2</posy>
+			<posx>1145</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
             <textcolor>FFEEEEFF</textcolor>
-            <align>left</align>
+            <align>right</align>
             <label>74.89 €</label>
           </control>
 		  
 		  <control type="label" id="279">
-			<posx>1190</posx>
-            <posy>2</posy>
+			<posx>1180</posx>
+            <posy>-3</posy>
             <width>950</width>
             <height>50</height>
             <font>font35_title</font>
